@@ -27,6 +27,7 @@ public class CollectionServer {
 
     private final ForkJoinPool forkJoinPool = new ForkJoinPool();
     private final ExecutorService fixedThreadPool = Executors.newFixedThreadPool(10);
+    private final ExecutorService acceptThread = Executors.newSingleThreadExecutor();
 
     private final CommandManager commandManager;
 
@@ -40,7 +41,6 @@ public class CollectionServer {
         this.curCol = curCol;
         this.dbManager = dbManager;
     }
-    private final ExecutorService acceptThread = Executors.newSingleThreadExecutor();
 
     public void run(){
         try(Scanner console = new Scanner(System.in)) {
@@ -49,6 +49,9 @@ public class CollectionServer {
                 if (System.in.available() > 0) {
                     String line = console.nextLine();
                     if (line.equals("exit")) {
+                        this.acceptThread.shutdown();
+                        this.fixedThreadPool.shutdown();
+                        this.forkJoinPool.shutdown();
                         break;
                     }
                 }
