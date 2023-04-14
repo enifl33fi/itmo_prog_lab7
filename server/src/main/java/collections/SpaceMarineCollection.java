@@ -237,10 +237,6 @@ public class SpaceMarineCollection implements InteractiveCollection {
         readWriteLock.readLock().lock();
         try {
             StringBuilder answer = new StringBuilder();
-            int sum = this.data.stream()
-                    .map(CollectionPart::getHeartCount)
-                    .reduce(0, Integer::sum);
-            System.out.println(sum);
 
             this.data.stream()
                     .map(CollectionPart::getHeartCount)

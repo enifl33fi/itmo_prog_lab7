@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
@@ -32,8 +33,8 @@ public class Client {
 
     private final RequestParser requestParser;
 
-    private final int attemptsCount  = 30;
-    private final int clientSleepTime = 20;
+    private final int attemptsCount  = 600;
+    private final int clientSleepTime = 1;
 
     private boolean isRegistered;
     private ImmutablePair<String, String> userContainer;
