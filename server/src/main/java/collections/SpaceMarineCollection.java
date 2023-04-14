@@ -116,6 +116,7 @@ public class SpaceMarineCollection implements InteractiveCollection {
         try{
             this.spaceMarineTable.removeById(owner, id);
             this.data.remove(curElem);
+            this.spaceMarineTable.reduceCounter(this.data.getLast().getId());
         } finally {
             readWriteLock.writeLock().unlock();
         }
@@ -131,6 +132,7 @@ public class SpaceMarineCollection implements InteractiveCollection {
         try {
             this.spaceMarineTable.clear(owner);
             this.data.removeIf(isOwned);
+            this.spaceMarineTable.reduceCounter(this.data.getLast().getId());
         } finally {
             readWriteLock.writeLock().unlock();
         }
@@ -150,6 +152,7 @@ public class SpaceMarineCollection implements InteractiveCollection {
             } else {
                 this.spaceMarineTable.removeFirst(owner);
                 this.data.remove(elem);
+                this.spaceMarineTable.reduceCounter(this.data.getLast().getId());
                 answer = "First element successfully removed";
             }
         } catch (NoSuchElementException e) {

@@ -29,6 +29,7 @@ public class ClearCommand extends Command {
                         this.curCol.clear(req.getUserContainer().getLeft());
                         res.setResponseLine("Collection cleared successfully.");
                     }catch (SQLException e){
+                        System.out.println(e.getMessage());
                         res.setResponseLine("Problems with db.");
                     }
                 }

@@ -166,4 +166,12 @@ public class SpaceMarineTable {
             st.setTimestamp(11, new Timestamp(elem.getCreationDate().getTime()));
         }
     }
+
+    public void reduceCounter(long id) throws SQLException {
+        String reqSQL = "SELECT setval('counter', ?);";
+        PreparedStatement st = this.connection.prepareStatement(reqSQL);
+        st.setLong(1, id);
+        st.executeQuery();
+
+    }
 }
